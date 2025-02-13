@@ -22,7 +22,7 @@ import balabhartiLogo2 from "../assets/balabharti.jpeg"
 
 
 const clients = [
-  { name: "Balabharti Infrastructure", logo: nhaiLogo },
+  { name: "National Highway Authority Limited", logo: nhaiLogo },
   { name: "Montecarlo Limited", logo: montecarloLogo },
   { name: "DP Jain & Co.", logo: dpjainLogo },
   { name: "LNA Infra Project", logo: lnaLogo },
