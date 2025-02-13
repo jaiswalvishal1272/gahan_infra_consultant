@@ -1,92 +1,62 @@
-// // import React from 'react';
-
-// // const Footer = () => (
-// //   <footer className="fixed bottom-0 w-full bg-gray-900 text-white text-center p-3 shadow-lg">
-// //     <p className="text-sm md:text-base">© 2025 Gahan Infra Consultant. All rights reserved.</p>
-// //   </footer>
-// // );
-
-// // export default Footer;
-
-
-// import React from 'react';
-// import { Box, Typography } from '@mui/material';
-
-// const Footer = () => {
-//   return (
-//     <Box
-//       component="footer"
-//       sx={{
-//         position: 'fixed',
-//         bottom: 0,
-//         left: 0,
-//         width: '100%',
-//         bgcolor: 'grey.900',
-//         color: 'white',
-//         textAlign: 'center',
-//         p: 2,
-//         boxShadow: 3,
-//       }}
-//     >
-//       <Typography variant="body2" sx={{ fontSize: { xs: '0.75rem', md: '1rem' } }}>
-//         © 2025 Gahan Infra Consultant. All rights reserved.
-//       </Typography>
-//     </Box>
-//   );
-// };
-
-// export default Footer;
-
-
-
 import React from 'react';
-import { Box, Typography, Grid } from '@mui/material';
+import { Box, Typography, Grid, Container, Link, TextField, Button } from '@mui/material';
 
 const Footer = () => {
+  const dominantColor = getComputedStyle(document.documentElement).getPropertyValue('--dominant-color') || '#004EA2'; // Fallback color
+
   return (
     <Box
       component="footer"
-      // sx={{
-      //   position: "fixed",
-      //   width: '100%',
-      //   bgcolor: 'grey.900',
-      //   color: 'white',
-      //   // textAlign: 'center',
-      //   py: 0,
-      //   px: 2,
-      //   bottom: 0
-      //   // mt: "",  // Pushes footer to bottom when content is short
-      // }}
       sx={{
-                position: 'fixed',
-                bottom: 0,
-                left: 0,
-                width: '100%',
-                bgcolor: 'grey.900',
-                color: 'white',
-                textAlign: 'center',
-                p: 2,
-                boxShadow: 3,
-              }}
+        bgcolor: 'grey.900',
+        color: '#FFFFFF', // White text for contrast
+        py: 6,
+        px: 2,
+        mt: 'auto',
+        textAlign: 'center', // Default center alignment
+      }}
     >
-      <Grid container spacing={2} justifyContent="center">
-        {/* Contact Section */}
-        <Grid item xs={12} md={4}>
-          <Typography variant="h6" gutterBottom>
-            Contact Us
-          </Typography>
-          <Typography variant="body2">📧 gic.gahaninfraconsultant@gmail.com</Typography>
-          <Typography variant="body2">📞 +91-9414457407 / +91-9509571315</Typography>
-          <Typography variant="body2">📍 D211 Malviya Nagar, Jaipur</Typography>
-        </Grid>
+      <Container maxWidth="lg">
+        <Grid container spacing={4} alignItems="flex-start"> {/* Align items to the top */}
 
-        {/* Copyright Section */}
-        <Grid item xs={12} md={4}>
-          <Typography variant="body2" sx={{ fontSize: { xs: '0.75rem', md: '1rem' }, mt: 2 }}>
-            © 2025 Gahan Infra Consultant. All rights reserved.
-          </Typography>
+          <Grid item xs={12} sm={6} md={4} lg={4} sx={{ textAlign: { xs: 'left', md: 'left' } }}> {/* Contact Us */}
+            <Typography variant="h6" gutterBottom>Contact Us</Typography>
+            <Typography variant="body2" component="p">
+              <Link href="mailto:gic.gahaninfraconsultant@gmail.com" color="inherit">
+                gic.gahaninfraconsultant@gmail.com
+              </Link>
+            </Typography>
+            <Typography variant="body2" component="p">+91-9414457407 / +91-9509571315</Typography>
+            <Typography variant="body2" component="p">D211 Malviya Nagar, Jaipur</Typography>
+          </Grid>
+          <Grid item xs={12} sm={6} md={4} lg={4} sx={{ textAlign: { xs: 'left', md: 'left' } }}> {/* Quick Links */}
+            <Typography variant="h6" gutterBottom>Quick Links</Typography>
+            {[
+              { href: "/", label: "Home" },
+              { href: "/services", label: "Our Services" },
+              { href: "/projects", label: "Our Projects" },
+              { href: "/clients", label: "Our Clients" },
+              // { href: "/contact", label: "Contact Us" },
+            ].map((link, index) => (
+              <Typography variant="body2" key={index} component="p">
+                <Link href={link.href} color="inherit" underline="hover">
+                  {link.label}
+                </Link>
+              </Typography>
+            ))}
+          </Grid>
+
+          <Grid item xs={12} sm={6} md={4} lg={4} sx={{ textAlign: { xs: 'right', md: 'right' } }}> {/* Copyright & other links */}
+            <Typography variant="body2" component="p">
+              © 2025 Gahan Infra Consultant. All rights reserved.
+            </Typography>
+            <Typography variant="body2" component="p">
+              <Link href="/terms" color="inherit" underline="hover">Terms</Link> | <Link href="/privacy" color="inherit" underline="hover">Privacy</Link> | <Link href="/cookies" color="inherit" underline="hover">Cookies</Link>
+            </Typography>
+          </Grid>
+
         </Grid>
-      </Grid>
+      </Container>
     </Box>
   );
 };

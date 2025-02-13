@@ -1,6 +1,6 @@
 import React from "react";
 import { Container, Typography, Grid, Card, CardContent, Box } from "@mui/material";
-import backgroundImage from '../assets/buildingCons.jpeg';
+import backgroundImage from '../assets/buildingCons.jpg'; // Replace with your actual image path
 
 const projects = [
   {
@@ -58,74 +58,73 @@ const projects = [
 const Projects = () => (
   <Box
     sx={{
-      backgroundImage: `url(${backgroundImage})`, // Replace with your actual image path
-      backgroundSize: "cover",
-      backgroundPosition: "center",
-      backgroundAttachment: "fixed",
-      color: "white",
-      py: 10, // Extra padding to avoid navbar overlap
-      px: 2,
+      backgroundImage: `url(${backgroundImage})`,
+      backgroundSize: "cover", // Or "contain" or "100% 100%" as needed
+      backgroundPosition: "center", // Or "top", "bottom", "left", "right"
+      backgroundRepeat: "no-repeat", // Prevent image tiling
+      minHeight: "100vh", // Ensure full viewport height
       display: "flex",
       flexDirection: "column",
-      alignItems: "center",
-      width: "98vw",
-      height: "80vh"
     }}
   >
-    <Container maxWidth="lg" sx={{ display: "flex", flexDirection: "column", height: "75vh" }}>
-      {/* Overlay Box */}
-      <Box
-        sx={{
-          backgroundColor: "rgba(0, 0, 0, 0.6)",
-          p: 5,
-          borderRadius: 2,
-          flex: 1,
-          width: "100%",
-          overflowY: "auto",
-          scrollbarWidth: "none", // Firefox
-          "&::-webkit-scrollbar": {
-            display: "none", // Chrome, Safari
-          },
-        }}
-      >
-        {/* Title */}
-        <Typography variant="h4" fontWeight="bold" textAlign="center" gutterBottom>
+    <Box
+      sx={{
+        backgroundColor: "rgba(0, 0, 0, 0.6)", // Semi-transparent overlay
+        flexGrow: 1, // Important for vertical centering
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+      }}
+    >
+      <Container maxWidth="lg" sx={{ py: 8, color: "white" }}>
+        <Typography
+          variant="h4"
+          fontWeight="bold"
+          textAlign="center"
+          gutterBottom
+          sx={{ pt: 4 }}
+        >
           Our Major Projects
         </Typography>
 
         <Typography variant="body1" textAlign="center" mb={4}>
-          We have successfully executed numerous infrastructure projects across India.
+          We have successfully executed numerous infrastructure projects across
+          India.
         </Typography>
 
-        {/* Projects Grid */}
-        <Grid container spacing={4}>
+        <Grid container spacing={4} justifyContent="center">
           {projects.map((project, index) => (
-            <Grid item xs={12} sm={6} md={4} key={index}>
+            <Grid item xs={12} sm={6} md={4} lg={3} key={index} padding={2}>
               <Card
                 sx={{
                   height: "100%",
+                  display: "flex",
+                  flexDirection: "column",
                   boxShadow: 3,
                   transition: "transform 0.3s",
                   "&:hover": { transform: "scale(1.05)" },
+                  backgroundColor: "rgba(255, 255, 255, 0.1)",
                 }}
               >
-                <CardContent>
+                <CardContent sx={{ flexGrow: 1, color: "white" }}>
                   <Typography variant="h6" fontWeight="bold" gutterBottom>
                     {project.title}
                   </Typography>
-                  <Typography variant="body2" color="text.secondary">
+                  <Typography variant="body2" sx={{ flexGrow: 1 }}>
                     {project.description}
                   </Typography>
-                  <Typography variant="subtitle2" fontWeight="bold" color="secondary" mt={1}>
-                    Client: {project.client}
-                  </Typography>
+                  <Box mt={2}>
+                    <Typography variant="subtitle2" fontWeight="bold">
+                      Client: {project.client}
+                    </Typography>
+                  </Box>
                 </CardContent>
               </Card>
             </Grid>
           ))}
         </Grid>
-      </Box>
-    </Container>
+      </Container>
+    </Box>
   </Box>
 );
 

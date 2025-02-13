@@ -1,84 +1,20 @@
-// import React from 'react';
-// import { Link } from 'react-router-dom';
-
-// const Navbar = () => (
-//   <nav className="bg-gray-800 text-white p-4">
-//     <ul className="flex justify-around">
-//       <li><Link to="/">Home</Link></li>
-//       <li><Link to="/projects">Our Projects</Link></li>
-//       <li><Link to="/clients">Our Clients</Link></li>
-//       <li><Link to="/contact">Contact Us</Link></li>
-//     </ul>
-//   </nav>
-// );
-
-// export default Navbar;
-
-
-// src/components/Navbar.js
-// import React, { useState } from 'react';
-// import { Link } from 'react-router-dom';
-// import { Menu, X } from 'lucide-react';
-
-// const Navbar = () => {
-//   const [menuOpen, setMenuOpen] = useState(false);
-
-//   return (
-//     <nav className="bg-blue-800 text-white">
-//       <div className="max-w-7xl mx-auto flex justify-between items-center p-4">
-//         <h1 className="text-xl font-bold">Gahan Infra</h1>
-//         <button
-//           className="md:hidden"
-//           onClick={() => setMenuOpen(!menuOpen)}
-//         >
-//           {menuOpen ? <X size={24} /> : <Menu size={24} />}
-//         </button>
-//         <ul
-//           className={`md:flex space-x-4 ${
-//             menuOpen ? 'block' : 'hidden'
-//           } md:space-x-6 md:block absolute md:static bg-blue-800 w-full md:w-auto`}
-//         >
-//           <li className="p-2 md:p-0"><Link to="/">Home</Link></li>
-//           <li className="p-2 md:p-0"><Link to="/projects">Our Projects</Link></li>
-//           <li className="p-2 md:p-0"><Link to="/clients">Our Clients</Link></li>
-//           <li className="p-2 md:p-0"><Link to="/contact">Contact Us</Link></li>
-//         </ul>
-//       </div>
-//     </nav>
-//   );
-// };
-
-// export default Navbar;
-
-
-// src/components/Navbar.js
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { AppBar, Toolbar, Typography, IconButton, Drawer, List, ListItem, ListItemButton, ListItemText, Box, Divider } from '@mui/material'; // Corrected import
 import { Menu, X } from 'lucide-react';
-import {
-  AppBar,
-  Toolbar,
-  Typography,
-  IconButton,
-  Drawer,
-  List,
-  ListItem,
-  ListItemText,
-  Box,
-} from '@mui/material';
+import logo from '../assets/logoInfra1.png';
 
 const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
 
   return (
-    <AppBar position="fixed" sx={{ bgcolor: 'primary.main', zIndex: 1300 }}>
-      <Toolbar sx={{ display: 'flex', justifyContent: 'space-between' }}>
-        <Typography variant="h6" component="div" sx={{ fontWeight: 'bold' }}>
-          Gahan Infra
-        </Typography>
+    <AppBar position="fixed" sx={{ bgcolor: 'grey.900', zIndex: 1300 }}>
+      <Toolbar sx={{ display: 'flex', justifyContent: 'space-between', padding: '0 1rem' }}>
+      <Box component="div" sx={{ display: 'flex', alignItems: 'center' }}> {/* Use Box for logo */}
+          <img src={logo} alt="Gahan Infra Logo" style={{ height: '3rem' }} /> {/* Adjust height as needed */}
+        </Box>
 
-        {/* Mobile Menu Toggle */}
-        <IconButton
+        <IconButton  // Make sure IconButton is imported
           edge="end"
           color="inherit"
           aria-label="menu"
@@ -88,7 +24,6 @@ const Navbar = () => {
           <Menu size={24} />
         </IconButton>
 
-        {/* Desktop Navigation */}
         <Box sx={{ display: { xs: 'none', md: 'flex' }, gap: 3 }}>
           <Typography component={Link} to="/" color="inherit" sx={{ textDecoration: 'none', '&:hover': { color: 'yellow' } }}>Home</Typography>
           <Typography component={Link} to="/services" color="inherit" sx={{ textDecoration: 'none', '&:hover': { color: 'yellow' } }}>Our Services</Typography>
@@ -98,29 +33,37 @@ const Navbar = () => {
         </Box>
       </Toolbar>
 
-      {/* Mobile Drawer */}
       <Drawer anchor="right" open={menuOpen} onClose={() => setMenuOpen(false)}>
-        <Box sx={{ width: 250 }}>
-          <List>
-            <ListItem button onClick={() => setMenuOpen(false)}>
+        <Box sx={{ width: 250, display: 'flex', flexDirection: 'column', height: '100%' }}>
+          <Box sx={{ display: 'flex', justifyContent: 'flex-end', p: 1 }}>
+            <IconButton onClick={() => setMenuOpen(false)}>
               <X size={24} />
-            </ListItem>
-            <ListItem button component={Link} to="/" onClick={() => setMenuOpen(false)}>
-              <ListItemText primary="Home" />
-            </ListItem>
-            <ListItem button component={Link} to="/services" onClick={() => setMenuOpen(false)}>
-              <ListItemText primary="Our Services" />
-            </ListItem>
-            <ListItem button component={Link} to="/projects" onClick={() => setMenuOpen(false)}>
-              <ListItemText primary="Our Projects" />
-            </ListItem>
-            <ListItem button component={Link} to="/clients" onClick={() => setMenuOpen(false)}>
-              <ListItemText primary="Our Clients" />
-            </ListItem>
-            {/* <ListItem button component={Link} to="/contact" onClick={() => setMenuOpen(false)}>
-              <ListItemText primary="Contact Us" />
-            </ListItem> */}
+            </IconButton>
+          </Box>
+
+          <Divider />
+
+          <List sx={{ flexGrow: 1 }}>
+            {[
+              { to: "/", text: "Home" },
+              { to: "/services", text: "Our Services" },
+              { to: "/projects", text: "Our Projects" },
+              { to: "/clients", text: "Our Clients" },
+              // { to: "/contact", text: "Contact Us" },
+            ].map((link, index) => (
+              <ListItem key={index} disablePadding>
+                <ListItemButton component={Link} to={link.to} onClick={() => setMenuOpen(false)}>
+                  <ListItemText primary={link.text} />
+                </ListItemButton>
+              </ListItem>
+            ))}
           </List>
+
+          <Divider />
+
+          <Box sx={{ p: 2, textAlign: 'center' }}>
+            <Typography variant="body2">© 2025 Gahan Infra Consultant. All rights reserved.</Typography>
+          </Box>
         </Box>
       </Drawer>
     </AppBar>
@@ -128,4 +71,3 @@ const Navbar = () => {
 };
 
 export default Navbar;
-

@@ -5,22 +5,24 @@ import Footer from '../components/Footer';
 import Home from '../pages/Home';
 import Projects from '../pages/Project';
 import Clients from '../pages/Clients';
-// import Contact from '../pages/Contact';
 import Services from '../pages/Services';
+import Contact from '../pages/Contact'; // Import Contact page
 
 const AppRoutes = () => (
   <Router>
-    <Navbar />
-    <div className="min-h-screen">
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/services" element={<Services />} />       
-        <Route path="/projects" element={<Projects />} />       
-        <Route path="/clients" element={<Clients />} />
-        {/* <Route path="/contact" element={<Contact />} /> */}
-      </Routes>
+    <div className="flex flex-col min-h-screen">
+      <Navbar />
+      <main className="flex-grow pt-16 px-2 md:px-4"> {/* Added horizontal padding */}
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/services" element={<Services />} />
+          <Route path="/projects" element={<Projects />} />
+          <Route path="/clients" element={<Clients />} />
+          <Route path="/contact" element={<Contact />} /> {/* Added Contact route */}
+        </Routes>
+      </main>
+      <Footer />
     </div>
-    <Footer />
   </Router>
 );
 
