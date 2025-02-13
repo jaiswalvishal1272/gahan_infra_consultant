@@ -4,7 +4,7 @@ import backgroundImage from "../assets/bridge.jpg"; // Replace with your actual 
 import nhaiLogo from "../assets/nhai.png";
 import montecarloLogo from "../assets/montecarlo.png";
 import dpjainLogo from "../assets/dpjain.png";
-import balabhartiLogo from "../assets/balabharti.jpeg";
+// import balabhartiLogo from "../assets/balabharti.jpeg";
 import lnaLogo from "../assets/lna-infraprojects-pvt-ltd-saytmarshrut-sokhranit-133515.jpg";
 import ghvLogo from "../assets/GHV.png";
 import pwdLogo from "../assets/pwd.png";

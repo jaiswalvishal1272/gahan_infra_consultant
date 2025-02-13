@@ -1,5 +1,5 @@
 import React from 'react';
-import { Container, Typography, Box, TextField, Button, Grid2 as Grid } from '@mui/material';
+import { Container, Typography, Box } from '@mui/material';
 // import backgroundImage from '../assets/contact-background.jpg'; // Replace with your image
 
 const Contact = () => {

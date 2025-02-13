@@ -1,8 +1,8 @@
 import React from 'react';
-import { Box, Typography, Grid, Container, Link, TextField, Button } from '@mui/material';
+import { Box, Typography, Grid, Container, Link } from '@mui/material';
 
 const Footer = () => {
-  const dominantColor = getComputedStyle(document.documentElement).getPropertyValue('--dominant-color') || '#004EA2'; // Fallback color
+  // const dominantColor = getComputedStyle(document.documentElement).getPropertyValue('--dominant-color') || '#004EA2'; // Fallback color
 
   return (
     <Box
